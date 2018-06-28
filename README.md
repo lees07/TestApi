@@ -12,14 +12,21 @@ to fix such issue.
 
 Add project to github.com, you will run
 ```
-$ git remote add origin https://github.com/<your account>/TestApi.git
-$ git remote -v
+$ git init
+$ git add *
+$ git commit -m "first commit"
+$ git remote add origin https://github.com/<your account>/<your repository>.git
+$ git push -u origin master
 ```
 under project directory to add remote repository, and run 
 ```
-$ git pull https://github.com/<your account>/TestApi.git
+$ git pull https://github.com/<your account>/<your repository>.git
 $ git push -u origin master
 ```
 to synchonize changes to github.
 
-
+Build and deploy project to Openshift is sample.
+```
+oc new-app registry.access.redhat.com/dotnet/dotnet-21-rhel7~https://github.com/<your account>/<your repository> --context-dir=app
+```
+can triggered S2I process, download dotnet-21-rhel7 images from registry, clone source codes from github, build an application image, and deploy to run.
